@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@layer components {
+  .container {
+    @apply max-w-4xl m-auto;
+  }
+}
