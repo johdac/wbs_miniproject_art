@@ -1,0 +1,29 @@
+import { createBrowserRouter } from "react-router";
+import { HomePage, HomePageLoader } from "./pages/HomePage";
+import { DefaultLayout } from "./layouts/DefaultLayout";
+import { ErrorPage } from "./pages/ErrorPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
+
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    Component: DefaultLayout,
+    ErrorBoundary: ErrorPage,
+    children: [
+      {
+        ErrorBoundary: ErrorPage,
+        children: [
+          {
+            index: true,
+            Component: HomePage,
+            loader: HomePageLoader,
+          },
+          {
+            path: "*",
+            Component: NotFoundPage,
+          },
+        ],
+      },
+    ],
+  },
+]);
