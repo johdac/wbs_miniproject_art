@@ -3,6 +3,8 @@ import { HomePage, HomePageLoader } from "./pages/HomePage";
 import { DefaultLayout } from "./layouts/DefaultLayout";
 import { ErrorPage } from "./pages/ErrorPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { SearchPage, SearchPageLoader } from "./pages/SearchPage";
+import { ArtworkPage, ArtworkPageLoader } from "./pages/ArtworkPage";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +19,16 @@ export const router = createBrowserRouter([
             index: true,
             Component: HomePage,
             loader: HomePageLoader,
+          },
+          {
+            path: "search",
+            Component: SearchPage,
+            loader: SearchPageLoader,
+          },
+          {
+            path: ":id",
+            Component: ArtworkPage,
+            loader: ArtworkPageLoader,
           },
           {
             path: "*",

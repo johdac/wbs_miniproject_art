@@ -7,5 +7,7 @@ export async function fetchJson(
     signal,
   });
   if (!res.ok) throw new Response("Failed to load", { status: res.status });
-  return res.json();
+  const data = await res.json();
+  console.log(data);
+  return data;
 }

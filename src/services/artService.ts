@@ -1,13 +1,33 @@
-import { z } from "zod/v4";
 import { fetchJson } from "../lib/fetchJson";
-import { ApiGeneralSchema } from "../schemas";
+import {
+  ApiArtSchema,
+  ApiArtSearchSchema,
+  ApiArtSingleArtworkSchema,
+} from "../schemas/schemas";
 
-export async function artService(signal: AbortSignal) {
-  const resData = await fetchJson(
-    "https://api.artic.edu/api/v1/artworks",
-    signal,
-  );
-  const { data, success, error } = ApiGeneralSchema.safeParse(resData);
-  if (!success) throw new Error(z.prettifyError(error));
-  return data;
-}
+const BASE_URL = "https://api.artic.edu/api/v1/artworks/";
+const FIELDS = "fields=id,title,image_id,thumbnail,api_link";
+
+export const artService = {
+  getArt: async function (url: string, signal: AbortSignal) {
+    const resData = await fetchJson(`${BASE_URL}${url}?${FIELDS}`, signal);
+    const data = ApiArtSchema.parse(resData);
+    return data;
+  },
+
+  getSingleArtwork: async function (url: string, signal: AbortSignal) {
+    const resData = await fetchJson(`${BASE_URL}${url}?${FIELDS}`, signal);
+    const data = ApiArtSingleArtworkSchema.parse(resData);
+    return data;
+  },
+
+  searchArt: async function (query: string, signal: AbortSignal) {
+    const resData = await fetchJson(
+      `${BASE_URL}search?q=${encodeURIComponent(query)}&${FIELDS}`,
+      signal,
+    );
+    console.log("resData", resData);
+    const data = ApiArtSearchSchema.parse(resData);
+    return data;
+  },
+};

@@ -1,3 +1,8 @@
+import { Link } from "react-router";
 export const Header = () => {
-  return <>Header</>;
+  return (
+    <>
+      <Link to="/">Home</Link>
+    </>
+  );
 };
