@@ -8,6 +8,6 @@ export async function fetchJson(
   });
   if (!res.ok) throw new Response("Failed to load", { status: res.status });
   const data = await res.json();
-  console.log(data);
+  console.log("fetchJson Data", data);
   return data;
 }

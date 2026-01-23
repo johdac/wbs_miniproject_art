@@ -19,6 +19,7 @@ export const artService = {
   getSingleArtwork: async function (url: string, signal: AbortSignal) {
     const resData = await fetchJson(`${BASE_URL}${url}?${FIELDS}`, signal);
     const data = ApiArtSingleArtworkSchema.parse(resData);
+    console.log("getSingleArtworkData: ", data);
     return data;
   },
 

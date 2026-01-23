@@ -5,6 +5,7 @@ import { ErrorPage } from "./pages/ErrorPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { SearchPage, SearchPageLoader } from "./pages/SearchPage";
 import { ArtworkPage, ArtworkPageLoader } from "./pages/ArtworkPage";
+import { FavoritesPage } from "./pages/FavoritesPage";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
             path: "search",
             Component: SearchPage,
             loader: SearchPageLoader,
+          },
+          {
+            path: "favorites",
+            Component: FavoritesPage,
           },
           {
             path: ":id",

@@ -1,7 +1,6 @@
 import { SearchFormSchema } from "../schemas/schemas";
 import type { LoaderFunctionArgs } from "react-router";
 import { artService } from "../services/artService";
-import { SearchBar } from "../components/SearchBar";
 import { useLoaderData } from "react-router";
 import { Artwork } from "../components/Artwork";
 
@@ -21,7 +20,6 @@ export const SearchPage = () => {
   return (
     <>
       <div className="container">
-        <h1>Search</h1>
         <div>
           <ul className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-20">
             {results.data.map((result) => {

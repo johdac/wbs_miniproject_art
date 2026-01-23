@@ -4,7 +4,7 @@ export const SearchBar = () => {
   return (
     <>
       <Form method="get" action="/search">
-        <label className="input h-14 w-[500px]">
+        <label className="input h-14 w-130">
           <svg
             className="h-[1em] opacity-50"
             xmlns="http://www.w3.org/2000/svg"

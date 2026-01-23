@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { useFavoriteArtStore } from "../store/favoriteArtStore";
+import { Heart } from "./Heart";
 
 type ArtworkProps = {
   imgId: string;
@@ -9,12 +9,6 @@ type ArtworkProps = {
 };
 
 export const Artwork = ({ imgId, title, artId, artist }: ArtworkProps) => {
-  const isFavorite = useFavoriteArtStore((s) => s.isFavorite(artId));
-  const toggleFavorite = useFavoriteArtStore((s) => s.toggleFavorite);
-  let heart;
-  if (isFavorite) heart = <use href="#heart" fill="red" />;
-  else heart = <use href="#heart" />;
-
   return (
     <>
       <li>
@@ -26,23 +20,13 @@ export const Artwork = ({ imgId, title, artId, artist }: ArtworkProps) => {
                 src={`https://www.artic.edu/iiif/2/${imgId}/full/843,/0/default.jpg`}
               />
             </div>
-            <div className="absolute left-0 bottom-0 flex h-22">
-              <div className="mr-4 pt-1">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    toggleFavorite(artId);
-                  }}
-                >
-                  <svg width={24} height={24} className="cursor-pointer">
-                    {heart}
-                  </svg>
-                </button>
-              </div>
+            <div className="absolute w-full left-0 bottom-0 flex h-22 justify-between">
               <div>
                 <div className="font-bold">{artist ?? artist}</div>
                 {title}
+              </div>
+              <div className="ml-4 pt-1">
+                <Heart artId={artId} />
               </div>
             </div>
           </div>
