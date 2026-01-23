@@ -11,7 +11,9 @@ const FIELDS =
 
 export const artService = {
   getArt: async function (url: string, signal: AbortSignal) {
-    const resData = await fetchJson(`${BASE_URL}${url}?${FIELDS}`, signal);
+    const completeUrl = `${BASE_URL}?${url}&${FIELDS}`;
+    console.log("completeUrl: ", completeUrl);
+    const resData = await fetchJson(completeUrl, signal);
     const data = ApiArtSchema.parse(resData);
     return data;
   },

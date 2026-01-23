@@ -1,3 +1,36 @@
+import { useFavoriteArtStore } from "../store/favoriteArtStore";
+import { artService } from "../services/artService";
+import type { LoaderFunctionArgs } from "react-router";
+import { useLoaderData } from "react-router";
+import { Artwork } from "../components/Artwork";
+
+export const FavoritePageLoader = async ({ request }: LoaderFunctionArgs) => {
+  const favorites = useFavoriteArtStore.getState().favorites;
+  const favoritesIds = favorites.filter((f) => f.isFavorite).map((f) => f.id);
+  console.log("favoriteItems", favoritesIds);
+  return artService.getArt(`ids=${favoritesIds.join(",")}`, request.signal);
+};
+
 export const FavoritesPage = () => {
-  return <>Favorites</>;
+  const art = useLoaderData<typeof FavoritePageLoader>();
+  console.log(art);
+  return (
+    <>
+      <div className="container">
+        <ul className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-20">
+          {art.data.map((piece) => {
+            return (
+              <Artwork
+                key={piece.id}
+                imgId={piece.image_id ?? ""}
+                title={piece.title ?? ""}
+                artId={piece.id}
+                artist={piece.artist_title}
+              />
+            );
+          })}
+        </ul>
+      </div>
+    </>
+  );
 };

@@ -5,7 +5,7 @@ import { ErrorPage } from "./pages/ErrorPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { SearchPage, SearchPageLoader } from "./pages/SearchPage";
 import { ArtworkPage, ArtworkPageLoader } from "./pages/ArtworkPage";
-import { FavoritesPage } from "./pages/FavoritesPage";
+import { FavoritesPage, FavoritePageLoader } from "./pages/FavoritesPage";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +29,7 @@ export const router = createBrowserRouter([
           {
             path: "favorites",
             Component: FavoritesPage,
+            loader: FavoritePageLoader,
           },
           {
             path: ":id",
