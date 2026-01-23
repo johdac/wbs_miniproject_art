@@ -3,9 +3,14 @@ import { z } from "zod/v4";
 /* REUSABLE */
 
 export const ApiArtArtworkSchema = z.object({
-  id: z.number().int(),
+  id: z.coerce.string(),
   title: z.string().nullable(),
   image_id: z.string().nullable(),
+  date_display: z.string().nullable(),
+  artist_display: z.string().nullable(),
+  dimensions: z.string().nullable(),
+  description: z.string().nullable(),
+  artist_title: z.string().nullable(),
 });
 
 /* SINGLE ARTWORK */
@@ -40,10 +45,11 @@ export const ApiArtSearchThumbnailSchema = z.object({
 
 export const ApiArtSearchDataSchema = z.object({
   api_link: z.url(),
-  id: z.number().int(),
+  id: z.coerce.string(),
   title: z.string().nullable(),
   thumbnail: ApiArtSearchThumbnailSchema.optional().nullable(),
   image_id: z.string().nullable().optional(),
+  artist_title: z.string().nullable(),
 });
 
 export const ApiArtSearchSchema = z.object({

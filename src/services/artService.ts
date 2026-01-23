@@ -6,7 +6,8 @@ import {
 } from "../schemas/schemas";
 
 const BASE_URL = "https://api.artic.edu/api/v1/artworks/";
-const FIELDS = "fields=id,title,image_id,thumbnail,api_link";
+const FIELDS =
+  "fields=id,title,image_id,thumbnail,api_link,date_display,artist_title,artist_display,dimensions,description";
 
 export const artService = {
   getArt: async function (url: string, signal: AbortSignal) {
@@ -26,7 +27,6 @@ export const artService = {
       `${BASE_URL}search?q=${encodeURIComponent(query)}&${FIELDS}`,
       signal,
     );
-    console.log("resData", resData);
     const data = ApiArtSearchSchema.parse(resData);
     return data;
   },

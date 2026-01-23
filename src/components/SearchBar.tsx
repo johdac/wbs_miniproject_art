@@ -4,7 +4,7 @@ export const SearchBar = () => {
   return (
     <>
       <Form method="get" action="/search">
-        <label className="input">
+        <label className="input h-14 w-[500px]">
           <svg
             className="h-[1em] opacity-50"
             xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +22,9 @@ export const SearchBar = () => {
             </g>
           </svg>
           <input type="search" name="search" required placeholder="Search" />
-          <button type="submit">Search</button>
+          <button className="btn my-2" type="submit">
+            Search
+          </button>
         </label>
       </Form>
     </>

@@ -1,6 +1,6 @@
 import { artService } from "../services/artService";
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
-import { SearchBar } from "../components/Searchbar";
+import { SearchBar } from "../components/SearchBar";
 import { Artwork } from "../components/Artwork";
 
 export const HomePageLoader = async ({ request }: LoaderFunctionArgs) => {
@@ -14,15 +14,15 @@ export const HomePage = () => {
     <>
       <div className="container">
         <h1>Art</h1>
-        <SearchBar />
-        <ul>
+        <ul className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-20">
           {art.data.map((piece) => {
             return (
               <Artwork
                 key={piece.id}
                 imgId={piece.image_id ?? ""}
                 title={piece.title ?? ""}
-                id={piece.id}
+                artId={piece.id}
+                artist={piece.artist_title}
               />
             );
           })}

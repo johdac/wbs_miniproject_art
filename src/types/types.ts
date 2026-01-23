@@ -15,3 +15,9 @@ export type ApiArtPaginationDto = z.infer<typeof ApiArtPaginationSchema>;
 export type ApiArtSearchDto = z.infer<typeof ApiArtSearchSchema>;
 export type ApiArtSingleArtworkDto = z.infer<typeof ApiArtSingleArtworkSchema>;
 export type SearchFormDto = z.infer<typeof SearchFormSchema>;
+
+export type Favorite = {
+  id: string;
+  isFavorite: boolean;
+  note: string;
+};
