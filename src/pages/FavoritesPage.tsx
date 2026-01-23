@@ -7,13 +7,24 @@ import { Artwork } from "../components/Artwork";
 export const FavoritePageLoader = async ({ request }: LoaderFunctionArgs) => {
   const favorites = useFavoriteArtStore.getState().favorites;
   const favoritesIds = favorites.filter((f) => f.isFavorite).map((f) => f.id);
-  console.log("favoriteItems", favoritesIds);
+  if (favoritesIds.length === 0) return undefined;
   return artService.getArt(`ids=${favoritesIds.join(",")}`, request.signal);
 };
 
 export const FavoritesPage = () => {
   const art = useLoaderData<typeof FavoritePageLoader>();
   console.log(art);
+  if (art === undefined) {
+    return (
+      <>
+        <div className="container">
+          <div className="flex justify-center mt-20 text-3xl">
+            No favorites added yet.
+          </div>
+        </div>
+      </>
+    );
+  }
   return (
     <>
       <div className="container">
